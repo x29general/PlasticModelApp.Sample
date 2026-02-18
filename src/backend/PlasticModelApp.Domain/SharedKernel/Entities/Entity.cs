@@ -7,6 +7,25 @@
 public abstract class Entity
 {
     /// <summary>
+    /// Determines whether the specified object is equal to the current entity.
+    /// </summary>
+    /// <param name="obj">The object to compare with the current entity.</param>
+    /// <returns>true when both entities are the same type and have the same identity; otherwise false.</returns>
+    public override bool Equals(object? obj)
+    {
+        return obj is Entity other && IsSameEntityAs(other);
+    }
+
+    /// <summary>
+    /// Returns the hash code for this entity.
+    /// </summary>
+    /// <returns>A hash code based on entity identity.</returns>
+    public override int GetHashCode()
+    {
+        return GetIdentityHashCode();
+    }
+
+    /// <summary>
     /// Determines whether this entity has the same identity as another entity.
     /// </summary>
     /// <param name="other">The entity to compare with.</param>
@@ -37,6 +56,12 @@ public abstract class Entity
     /// <param name="other">The entity to compare with.</param>
     /// <returns>true when identities are equal; otherwise false.</returns>
     protected abstract bool HasSameIdentityAs(Entity other);
+
+    /// <summary>
+    /// Returns a hash code based on identity components.
+    /// </summary>
+    /// <returns>The identity-based hash code.</returns>
+    protected abstract int GetIdentityHashCode();
 }
 
 /// <summary>
@@ -63,5 +88,16 @@ public abstract class Entity<TId> : Entity
         }
 
         return EqualityComparer<TId>.Default.Equals(Id, otherEntity.Id);
+    }
+
+    /// <inheritdoc />
+    protected override int GetIdentityHashCode()
+    {
+        if (Id is null)
+        {
+            return HashCode.Combine(GetType());
+        }
+
+        return HashCode.Combine(GetType(), Id);
     }
 }
