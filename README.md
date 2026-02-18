@@ -76,7 +76,7 @@ sequenceDiagram
 
 ---
 
-## 5. Domain / Design Policy
+## 5. 設計ポリシー
 
 本アプリケーションは以下の設計方針を意識して実装しています。
 
