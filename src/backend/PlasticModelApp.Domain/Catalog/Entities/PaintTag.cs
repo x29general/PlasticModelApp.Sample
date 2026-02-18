@@ -16,6 +16,9 @@ public class PaintTag
 
     private PaintTag(PaintId paintId, TagId tagId)
     {
+        ArgumentNullException.ThrowIfNull(paintId);
+        ArgumentNullException.ThrowIfNull(tagId);
+
         PaintId = paintId;
         TagId = tagId;
     }

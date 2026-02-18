@@ -42,20 +42,19 @@ public sealed class ColorSpec : ValueObject
             throw new ArgumentException("Hex code cannot be empty.", nameof(hex));
         if (!HexRegex.IsMatch(hex))
             throw new ArgumentException("Hex code must be in the format '#RRGGBB'.", nameof(hex));
- 
+
         Hex = new HexColor(hex);
- 
-        if (rgb is null)
-        {
-            rgb = HexToRgb(hex);
-        }
-        if (hsl is null)
-        {
-            hsl = HexToHsl(hex);
-        }
- 
-        Rgb = rgb;
-        Hsl = hsl;
+        var derivedRgb = HexToRgb(hex);
+        var derivedHsl = HexToHsl(hex);
+
+        // Hex is the single source of truth.
+        if (rgb is not null && !rgb.Equals(derivedRgb))
+            throw new ArgumentException("RGB must match the value derived from hex.", nameof(rgb));
+        if (hsl is not null && !hsl.Equals(derivedHsl))
+            throw new ArgumentException("HSL must match the value derived from hex.", nameof(hsl));
+
+        Rgb = derivedRgb;
+        Hsl = derivedHsl;
     }
  
     private ColorSpec() { }

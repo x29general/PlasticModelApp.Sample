@@ -227,6 +227,9 @@ public class Paint : Entity<PaintId>, IAggregateRoot
         string? imageUrl,
         DateTimeOffset now)
     {
+        if (IsDeleted)
+            throw new InvalidOperationException("Cannot update a deleted paint.");
+
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Paint Name is cannot be empty.", nameof(name));
         if (brandId == null)
