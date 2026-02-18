@@ -1,7 +1,10 @@
 namespace PlasticModelApp.Application.Shared.Exceptions;
 
 /// <summary>
-/// 認証エラー（401）を表す例外。
+/// Exception class for unauthorized errors in the application.
+/// This class represents exceptions that occur when a user attempts to access a resource or perform an action that they are not authenticated to access or perform.
+/// This can include scenarios such as accessing a protected resource without providing valid authentication credentials,
+/// or any other situation where the user is not authenticated and therefore cannot access the requested resource or perform the requested action.
 /// </summary>
 public sealed class UnauthorizedException : AppException
 {
