@@ -23,5 +23,18 @@ public class GetMastersQueryHandlerTests
         res.Should().BeSameAs(expected);
         svc.Verify(s => s.GetAllAsync(It.IsAny<CancellationToken>()), Times.Once);
     }
+
+    [Fact]
+    public async Task Handle_Rethrows_When_Service_Throws()
+    {
+        var svc = new Mock<IMasterQueryService>();
+        var logger = new Mock<ILogger<GetMastersQueryHandler>>();
+        svc.Setup(s => s.GetAllAsync(It.IsAny<CancellationToken>()))
+            .ThrowsAsync(new InvalidOperationException("boom"));
+
+        var handler = new GetMastersQueryHandler(svc.Object, logger.Object);
+
+        await Assert.ThrowsAsync<InvalidOperationException>(() => handler.Handle(new GetMastersQuery(), CancellationToken.None));
+    }
 }
 
