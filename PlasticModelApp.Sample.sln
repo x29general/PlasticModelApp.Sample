@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasticModelApp.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasticModelApp.Infrastructure", "src\backend\PlasticModelApp.Infrastructure\PlasticModelApp.Infrastructure.csproj", "{A1342384-7717-535E-6F4F-E661925903D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasticModelApp.Infrastructure.UnitTests", "tests\PlasticModelApp.Infrastructure.UnitTests\PlasticModelApp.Infrastructure.UnitTests.csproj", "{D9088390-3424-4D1E-81BC-12C6B2285E76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,18 @@ Global
 		{A1342384-7717-535E-6F4F-E661925903D0}.Release|x64.Build.0 = Release|Any CPU
 		{A1342384-7717-535E-6F4F-E661925903D0}.Release|x86.ActiveCfg = Release|Any CPU
 		{A1342384-7717-535E-6F4F-E661925903D0}.Release|x86.Build.0 = Release|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Debug|x64.Build.0 = Debug|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Debug|x86.Build.0 = Debug|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Release|x64.ActiveCfg = Release|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Release|x64.Build.0 = Release|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Release|x86.ActiveCfg = Release|Any CPU
+		{D9088390-3424-4D1E-81BC-12C6B2285E76}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +99,7 @@ Global
 		{FAAF6775-70CD-4808-961B-132D436D7A2C} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{04FDFDAA-955C-8B9C-1D8D-5111F27402D9} = {FE360695-3F2B-1049-3887-35FBB5135923}
 		{A1342384-7717-535E-6F4F-E661925903D0} = {FE360695-3F2B-1049-3887-35FBB5135923}
+		{D9088390-3424-4D1E-81BC-12C6B2285E76} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA208945-5A38-40D9-A133-3F2631319821}
