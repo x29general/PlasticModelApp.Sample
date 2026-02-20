@@ -54,7 +54,7 @@ public sealed class SearchSimilarPaintsQuery : IRequest<SimilarPaintsResult>
     /// <summary>
     /// Normalizes the pagination parameters and threshold to ensure they are within valid ranges.
     /// </summary>
-    internal void Normalize()
+    public void Normalize()
     {
         Page = Page <= 0 ? 1 : Page;
         PageSize = PageSize <= 0 ? DefaultPageSize : PageSize;
