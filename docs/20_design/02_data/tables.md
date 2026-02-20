@@ -1,114 +1,111 @@
-# テーブル設計
+# テーブル定義
 
-## `Paints`
+## `paints`
 
-| Column Name          | Type                        | Constraints | Index       | Notes                      |
-|:---------------------|:----------------------------|:------------|:------------|:---------------------------|
-| Id                   | text                        | PK          | PRIMARY KEY | PaintId value object       |
-| Name                 | varchar(100)                | NOT NULL    | INDEX       |                            |
-| ModelNumber          | varchar(50)                 |             | UNIQUE (BrandId, ModelNumber) | ModelNumber value object   |
-| ModelNumberPrefix    | varchar(50)                 |             | INDEX       | Sort prefix                |
-| ModelNumberNumber    | integer                     |             | INDEX       | Sort number                |
-| BrandId              | text                        | FK NOT NULL | INDEX       | Brand FK                   |
-| PaintTypeId          | text                        | FK NOT NULL | INDEX       | PaintType FK               |
-| GlossId              | text                        | FK NOT NULL | INDEX       | Gloss FK                   |
-| Price                | numeric(10,2)               | NOT NULL    |             | Price value object         |
-| Description          | varchar(500)                |             |             |                            |
-| ImageUrl             | varchar(200)                |             |             |                            |
-| Hex                  | text                        | NOT NULL    |             | HexColor value object      |
-| Rgb_R                | integer                     | NOT NULL    |             | RGB Red component          |
-| Rgb_G                | integer                     | NOT NULL    |             | RGB Green component        |
-| Rgb_B                | integer                     | NOT NULL    |             | RGB Blue component         |
-| Hsl_H                | real                        | NOT NULL    |             | HSL Hue component          |
-| Hsl_S                | real                        | NOT NULL    |             | HSL Saturation component   |
-| Hsl_L                | real                        | NOT NULL    |             | HSL Lightness component    |
-| CreatedAt            | timestamp with time zone    | NOT NULL    |             | DEFAULT CURRENT_TIMESTAMP  |
-| UpdatedAt            | timestamp with time zone    | NOT NULL    |             | DEFAULT CURRENT_TIMESTAMP  |
-| IsDeleted            | boolean                     | NOT NULL    |             | DEFAULT false, soft delete |
+| column_name         | type                      | constraints | index                             | notes |
+|:--------------------|:--------------------------|:------------|:----------------------------------|:------|
+| id                  | text                      | PK          | PRIMARY KEY                       | paint ID |
+| name                | varchar(100)              | NOT NULL    | INDEX                             | |
+| model_number        | varchar(50)               | NOT NULL    | UNIQUE (`brand_id`, `model_number`) | |
+| model_number_prefix | varchar(50)               |             | INDEX (`model_number_prefix`, `model_number_number`) | model number sort key |
+| model_number_number | integer                   |             | INDEX (`model_number_prefix`, `model_number_number`) | model number sort key |
+| brand_id            | text                      | FK NOT NULL | INDEX                             | FK -> `brands.id` |
+| paint_type_id       | text                      | FK NOT NULL | INDEX                             | FK -> `paint_types.id` |
+| gloss_id            | text                      | FK NOT NULL | INDEX                             | FK -> `glosses.id` |
+| price               | numeric(10,2)             | NOT NULL    |                                   | |
+| description         | varchar(500)              |             |                                   | |
+| image_url           | varchar(200)              |             |                                   | |
+| hex                 | text                      | NOT NULL    |                                   | |
+| rgb_r               | integer                   | NOT NULL    |                                   | |
+| rgb_g               | integer                   | NOT NULL    |                                   | |
+| rgb_b               | integer                   | NOT NULL    |                                   | |
+| hsl_h               | real                      | NOT NULL    |                                   | |
+| hsl_s               | real                      | NOT NULL    |                                   | |
+| hsl_l               | real                      | NOT NULL    |                                   | |
+| created_at          | timestamp with time zone  | NOT NULL    |                                   | DEFAULT CURRENT_TIMESTAMP |
+| updated_at          | timestamp with time zone  | NOT NULL    |                                   | DEFAULT CURRENT_TIMESTAMP |
+| is_deleted          | boolean                   | NOT NULL    |                                   | DEFAULT false (soft delete) |
 
-**Composite Indexes:**
-- `(ModelNumberPrefix, ModelNumberNumber)` for model number sorting
-
-**Query Filters:**
-- Soft delete: `WHERE IsDeleted = false`
+**query filter**
+- `WHERE is_deleted = false`
 
 ---
 
-## `Brands`
+## `brands`
 
-| Column Name | Type         | Constraints | Index       | Notes |
-|:------------|:-------------|:------------|:------------|:------|
-| Id          | text         | PK          | PRIMARY KEY | BrandId value object |
-| Name        | varchar(50)  | NOT NULL    | INDEX       | |
-| Description | text         |             |             | |
-
----
-
-## `PaintTypes`
-
-| Column Name | Type        | Constraints | Index       | Notes |
+| column_name | type        | constraints | index       | notes |
 |:------------|:------------|:------------|:------------|:------|
-| Id          | text        | PK          | PRIMARY KEY | PaintTypeId value object |
-| Name        | varchar(50) | NOT NULL    |             | |
-| Description | text        |             |             | |
+| id          | text        | PK          | PRIMARY KEY | brand ID |
+| name        | varchar(50) | NOT NULL    | INDEX       | |
+| description | text        |             |             | nullable |
 
 ---
 
-## `Glosses`
+## `paint_types`
 
-| Column Name | Type        | Constraints | Index       | Notes |
+| column_name | type        | constraints | index       | notes |
 |:------------|:------------|:------------|:------------|:------|
-| Id          | text        | PK          | PRIMARY KEY | GlossId value object |
-| Name        | varchar(50) | NOT NULL    |             | |
-| Description | text        |             |             | |
+| id          | text        | PK          | PRIMARY KEY | paint type ID |
+| name        | varchar(50) | NOT NULL    |             | |
+| description | text        |             |             | nullable |
 
 ---
 
-## `Tags`
+## `glosses`
 
-| Column Name   | Type                     | Constraints | Index       | Notes |
-|:--------------|:-------------------------|:------------|:------------|:------|
-| Id            | text                     | PK          | PRIMARY KEY | TagId value object |
-| Name          | varchar(50)              | NOT NULL    |             | |
-| TagCategoryId | text                     | FK NOT NULL | INDEX       | TagCategory FK |
-| Hex           | varchar(7)               |             |             | Hex color code |
-| Effect        | text                     |             |             | |
-| Description   | text                     |             |             | |
-| CreatedAt     | timestamp with time zone | NOT NULL    |             | DEFAULT CURRENT_TIMESTAMP |
-| UpdatedAt     | timestamp with time zone | NOT NULL    |             | DEFAULT CURRENT_TIMESTAMP |
-| IsDeleted     | boolean                  | NOT NULL    |             | DEFAULT false, soft delete |
-
-**Query Filters:**
-- Soft delete: `WHERE IsDeleted = false`
-
----
-
-## `TagCategories`
-
-| Column Name | Type        | Constraints | Index       | Notes |
+| column_name | type        | constraints | index       | notes |
 |:------------|:------------|:------------|:------------|:------|
-| Id          | text        | PK          | PRIMARY KEY | TagCategoryId value object |
-| Name        | varchar(50) | NOT NULL    |             | |
-| Description | text        |             |             | |
+| id          | text        | PK          | PRIMARY KEY | gloss ID |
+| name        | varchar(50) | NOT NULL    |             | |
+| description | text        |             |             | nullable |
 
 ---
 
-## `PaintTags`
+## `tags`
 
-| Column Name | Type | Constraints              | Index       | Notes |
-|:------------|:-----|:-------------------------|:------------|:------|
-| PaintId     | text | PK, FK                   | INDEX       | Composite PK with TagId |
-| TagId       | text | PK, FK                   | INDEX       | Composite PK with PaintId |
+| column_name     | type                      | constraints | index       | notes |
+|:----------------|:--------------------------|:------------|:------------|:------|
+| id              | text                      | PK          | PRIMARY KEY | tag ID |
+| name            | varchar(50)               | NOT NULL    |             | |
+| tag_category_id | text                      | FK NOT NULL | INDEX       | FK -> `tag_categories.id` |
+| hex             | varchar(7)                |             |             | |
+| effect          | text                      |             |             | |
+| description     | text                      |             |             | |
+| created_at      | timestamp with time zone  | NOT NULL    |             | DEFAULT CURRENT_TIMESTAMP |
+| updated_at      | timestamp with time zone  | NOT NULL    |             | DEFAULT CURRENT_TIMESTAMP |
+| is_deleted      | boolean                   | NOT NULL    |             | DEFAULT false (soft delete) |
 
-**Composite Primary Key:**
-- `(PaintId, TagId)`
+**query filter**
+- `WHERE is_deleted = false`
 
 ---
 
-## インデックス戦略
+## `tag_categories`
 
-- **PK**: すべての主キーは自動的にインデックスが作成される。
-- **FK**: すべての外部キー列には、結合の最適化のためにインデックスが作成される。
-- **ユニーク制約**: (BrandId, ModelNumber)
-- **複合インデックス**: (ModelNumberPrefix, ModelNumberNumber)は、モデル番号でのソートに使用される。
-- **論理削除**: PaintsとTagsは、IsDeleted=trueのレコードを除外するクエリフィルタを使用する。
+| column_name | type        | constraints | index       | notes |
+|:------------|:------------|:------------|:------------|:------|
+| id          | text        | PK          | PRIMARY KEY | tag category ID |
+| name        | varchar(50) | NOT NULL    |             | |
+| description | text        |             |             | nullable |
+
+---
+
+## `paint_tags`
+
+| column_name | type | constraints | index | notes |
+|:------------|:-----|:------------|:------|:------|
+| paint_id    | text | PK, FK      | INDEX | FK -> `paints.id` |
+| tag_id      | text | PK, FK      | INDEX | FK -> `tags.id` |
+
+**composite primary key**
+- (`paint_id`, `tag_id`)
+
+---
+
+## 制約・インデックス方針
+
+- PK は全テーブルで `id`（`paint_tags` は複合PK）。
+- FK は結合性能のためインデックスを付与。
+- UNIQUE 制約は `paints(brand_id, model_number)`。
+- 複合インデックスは `paints(model_number_prefix, model_number_number)`。
+- 論理削除は `paints` と `tags` のみ適用。

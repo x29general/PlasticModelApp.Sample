@@ -3,77 +3,77 @@
 ```mermaid
 erDiagram
     %% Master Data
-    Brands ||--o{ Paints : "has"
-    PaintTypes ||--o{ Paints : "has"
-    Glosses ||--o{ Paints : "has"
-    TagCategories ||--o{ Tags : "contains"
+    brands ||--o{ paints : "has"
+    paint_types ||--o{ paints : "has"
+    glosses ||--o{ paints : "has"
+    tag_categories ||--o{ tags : "contains"
 
     %% Paint relationships
-    Paints ||--o{ PaintTags : "has"
-    Tags ||--o{ PaintTags : "belongs to"
+    paints ||--o{ paint_tags : "has"
+    tags ||--o{ paint_tags : "belongs to"
 
-    Paints {
-        text Id PK "PaintId"
-        varchar Name "塗料名"
-        varchar ModelNumber "型番"
-        varchar ModelNumberPrefix "型番プレフィックス"
-        int ModelNumberNumber "型番数値"
-        text BrandId FK "ブランドID"
-        text PaintTypeId FK "塗料種別ID"
-        text GlossId FK "光沢ID"
-        numeric Price "価格"
-        varchar Description "説明"
-        varchar ImageUrl "画像URL"
-        text Hex "16進数カラー"
-        int Rgb_R "RGB Red"
-        int Rgb_G "RGB Green"
-        int Rgb_B "RGB Blue"
-        float Hsl_H "HSL Hue"
-        float Hsl_S "HSL Saturation"
-        float Hsl_L "HSL Lightness"
-        timestamptz CreatedAt "作成日時"
-        timestamptz UpdatedAt "更新日時"
-        bool IsDeleted "削除フラグ"
+    paints {
+        text id PK "paint ID"
+        varchar name "塗料名"
+        varchar model_number "型番"
+        varchar model_number_prefix "型番プレフィックス"
+        int model_number_number "型番数値"
+        text brand_id FK "ブランドID"
+        text paint_type_id FK "塗料種別ID"
+        text gloss_id FK "光沢ID"
+        numeric price "価格"
+        varchar description "説明"
+        varchar image_url "画像URL"
+        text hex "16進数カラー"
+        int rgb_r "RGB Red"
+        int rgb_g "RGB Green"
+        int rgb_b "RGB Blue"
+        float hsl_h "HSL Hue"
+        float hsl_s "HSL Saturation"
+        float hsl_l "HSL Lightness"
+        timestamptz created_at "作成日時"
+        timestamptz updated_at "更新日時"
+        bool is_deleted "削除フラグ"
     }
 
-    Brands {
-        text Id PK "BrandId"
-        varchar Name "ブランド名"
-        text Description "説明"
+    brands {
+        text id PK "brand ID"
+        varchar name "ブランド名"
+        text description "説明"
     }
 
-    PaintTypes {
-        text Id PK "PaintTypeId"
-        varchar Name "塗料種別名"
-        text Description "説明"
+    paint_types {
+        text id PK "paint type ID"
+        varchar name "塗料種別名"
+        text description "説明"
     }
 
-    Glosses {
-        text Id PK "GlossId"
-        varchar Name "光沢名"
-        text Description "説明"
+    glosses {
+        text id PK "gloss ID"
+        varchar name "光沢名"
+        text description "説明"
     }
 
-    Tags {
-        text Id PK "TagId"
-        varchar Name "タグ名"
-        text TagCategoryId FK "カテゴリID"
-        varchar Hex "タグ色"
-        text Effect "エフェクト"
-        text Description "説明"
-        timestamptz CreatedAt "作成日時"
-        timestamptz UpdatedAt "更新日時"
-        bool IsDeleted "削除フラグ"
+    tags {
+        text id PK "tag ID"
+        varchar name "タグ名"
+        text tag_category_id FK "カテゴリID"
+        varchar hex "タグ色"
+        text effect "エフェクト"
+        text description "説明"
+        timestamptz created_at "作成日時"
+        timestamptz updated_at "更新日時"
+        bool is_deleted "削除フラグ"
     }
 
-    TagCategories {
-        text Id PK "TagCategoryId"
-        varchar Name "カテゴリ名"
-        text Description "説明"
+    tag_categories {
+        text id PK "tag category ID"
+        varchar name "カテゴリ名"
+        text description "説明"
     }
 
-    PaintTags {
-        text PaintId PK "塗料ID"
-        text TagId PK "タグID"
+    paint_tags {
+        text paint_id PK "塗料ID"
+        text tag_id PK "タグID"
     }
 ```
