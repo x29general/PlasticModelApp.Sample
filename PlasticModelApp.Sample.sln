@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.2.11415.280
@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasticModelApp.Infrastruct
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{42299874-777B-F2D0-9D08-D24097ABCE7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasticModelApp.Frontend", "src\frontend\PlasticModelApp.Frontend\PlasticModelApp.Frontend.csproj", "{3CE289E2-9C83-4179-8A8D-1F19D2737A1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasticModelApp.Client", "src\\frontend\\PlasticModelApp.Client\\PlasticModelApp.Client.csproj", "{3CE289E2-9C83-4179-8A8D-1F19D2737A1F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlasticModelApp.Api", "src\backend\PlasticModelApp.Api\PlasticModelApp.Api.csproj", "{1E28AE7A-D558-439D-974B-2D6B93A86847}"
 EndProject
